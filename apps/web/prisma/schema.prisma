@@ -1,0 +1,247 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BillingStatus {
+  ACTIVE
+  INACTIVE
+  PAUSED
+}
+
+enum SubscriptionTier {
+  FREE
+  INDIVIDUAL
+  FAMILY_CARE_TEAM
+  ENTERPRISE
+}
+
+enum SubscriptionCycle {
+  MONTHLY
+  YEARLY
+  CUSTOM
+}
+
+enum AdminRole {
+  ORG_ADMIN
+  CAREGIVER
+  SUPER_ADMIN
+}
+
+enum SupportedUserStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+enum RoutineStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum ImageSourceType {
+  UPLOADED
+  EXTERNAL_PUBLIC_DOMAIN
+}
+
+enum DeviceLinkStatus {
+  PENDING
+  LINKED
+  REVOKED
+  EXPIRED
+}
+
+enum SyncStatus {
+  QUEUED
+  SYNCED
+  FAILED
+}
+
+enum StepResultValue {
+  DONE
+  NOT_DONE
+}
+
+enum RoutineScheduleType {
+  DAILY
+  WEEKLY
+}
+
+model Organization {
+  id                String            @id @default(cuid())
+  name              String
+  slug              String            @unique
+  billingStatus     BillingStatus     @default(ACTIVE)
+  subscriptionTier  SubscriptionTier  @default(FREE)
+  subscriptionCycle SubscriptionCycle?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  admins            AdminUser[]
+  supportedUsers    SupportedUser[]
+  routines          Routine[]
+  deviceLinks       DeviceLink[]
+  demoRequests      DemoRequest[]
+}
+
+model AdminUser {
+  id             String       @id @default(cuid())
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  firstName      String
+  lastName       String
+  email          String       @unique
+  profilePhotoUrl String?
+  passwordHash   String
+  role           AdminRole    @default(CAREGIVER)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  createdRoutines Routine[]   @relation("RoutineCreator")
+}
+
+model SupportedUser {
+  id              String              @id @default(cuid())
+  organizationId  String
+  organization    Organization        @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  firstName       String
+  lastName        String
+  displayName     String
+  dateOfBirth     DateTime?
+  helperAudioUrl  String?
+  status          SupportedUserStatus @default(ACTIVE)
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  assignments     RoutineAssignment[]
+  deviceLinks     DeviceLink[]
+  sessions        RoutineCompletionSession[]
+
+  @@index([organizationId])
+}
+
+model Routine {
+  id             String            @id @default(cuid())
+  organizationId String
+  organization   Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  title          String
+  description    String?
+  audioUrl       String?
+  status         RoutineStatus     @default(DRAFT)
+  currentVersion Int               @default(1)
+  createdById    String
+  createdBy      AdminUser         @relation("RoutineCreator", fields: [createdById], references: [id], onDelete: Restrict)
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  steps          RoutineStep[]
+  assignments    RoutineAssignment[]
+  sessions       RoutineCompletionSession[]
+
+  @@index([organizationId, status])
+}
+
+model RoutineStep {
+  id                  String          @id @default(cuid())
+  routineId           String
+  routine             Routine         @relation(fields: [routineId], references: [id], onDelete: Cascade)
+  sortOrder           Int
+  imageUrl            String
+  audioUrl            String?
+  imageSourceType     ImageSourceType @default(UPLOADED)
+  imageSourceMetadata String?
+  shortText           String?
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  stepResults         RoutineCompletionStepResult[]
+
+  @@unique([routineId, sortOrder])
+  @@index([routineId])
+}
+
+model RoutineAssignment {
+  id              String        @id @default(cuid())
+  routineId       String
+  routine         Routine       @relation(fields: [routineId], references: [id], onDelete: Cascade)
+  supportedUserId String
+  supportedUser   SupportedUser @relation(fields: [supportedUserId], references: [id], onDelete: Cascade)
+  assignedAt      DateTime      @default(now())
+  active          Boolean       @default(true)
+  scheduleType    RoutineScheduleType @default(DAILY)
+  timesPerDay     Int           @default(1)
+  daysOfWeek      String[]      @default([])
+  scheduledTimes  String[]      @default([])
+
+  @@unique([routineId, supportedUserId])
+  @@index([supportedUserId, active])
+}
+
+model DeviceLink {
+  id             String           @id @default(cuid())
+  organizationId String
+  organization   Organization     @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  supportedUserId String
+  supportedUser  SupportedUser    @relation(fields: [supportedUserId], references: [id], onDelete: Cascade)
+  deviceName     String?
+  pairingCode    String?          @unique
+  pairingExpiresAt DateTime?
+  authTokenHash  String?          @unique
+  linkedAt       DateTime?
+  revokedAt      DateTime?
+  status         DeviceLinkStatus @default(PENDING)
+  lastSyncedAt   DateTime?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  completionSessions RoutineCompletionSession[]
+
+  @@index([supportedUserId, status])
+  @@index([organizationId, status])
+}
+
+model RoutineCompletionSession {
+  id              String                      @id @default(cuid())
+  clientSessionId String?                     @unique
+  supportedUserId String
+  supportedUser   SupportedUser               @relation(fields: [supportedUserId], references: [id], onDelete: Cascade)
+  routineId       String
+  routine         Routine                     @relation(fields: [routineId], references: [id], onDelete: Cascade)
+  routineVersion  Int
+  startedAt       DateTime
+  completedAt     DateTime?
+  syncStatus      SyncStatus                  @default(SYNCED)
+  sourceDeviceLinkId String?
+  sourceDeviceLink DeviceLink?                @relation(fields: [sourceDeviceLinkId], references: [id], onDelete: SetNull)
+  stepResults     RoutineCompletionStepResult[]
+  createdAt       DateTime                    @default(now())
+
+  @@index([supportedUserId, startedAt])
+  @@index([routineId, startedAt])
+}
+
+model RoutineCompletionStepResult {
+  id           String          @id @default(cuid())
+  sessionId    String
+  session      RoutineCompletionSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  routineStepId String
+  routineStep  RoutineStep     @relation(fields: [routineStepId], references: [id], onDelete: Restrict)
+  result       StepResultValue
+  respondedAt  DateTime
+
+  @@index([sessionId])
+}
+
+model DemoRequest {
+  id                          String             @id @default(cuid())
+  organizationId              String?
+  organization                Organization?      @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  organizationName            String
+  contactName                 String
+  email                       String
+  phone                       String?
+  estimatedUserCount          Int?
+  requestedSubscriptionTier   SubscriptionTier?
+  requestedSubscriptionCycle  SubscriptionCycle?
+  message                     String
+  createdAt                   DateTime           @default(now())
+}

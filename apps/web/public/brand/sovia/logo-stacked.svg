@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 164" aria-labelledby="title">
+  <title>sovia stacked logo</title>
+  <path fill="#1F5F52" d="M106 22C98 12 85 8 72 10C58 12 50 20 51 32C52 43 60 48 71 51C80 53 88 55 91 61C95 68 90 75 80 77C70 79 59 76 51 71C51 77 56 83 64 86C75 90 87 89 96 84C107 77 109 65 103 55C97 45 86 41 75 38C67 36 62 33 61 28C60 22 64 17 72 16C80 15 89 17 97 24C99 26 104 26 106 22Z"/>
+  <text
+    x="90"
+    y="142"
+    fill="#1F2A28"
+    font-family="Plus Jakarta Sans, Inter, Arial, sans-serif"
+    font-size="34"
+    font-weight="600"
+    letter-spacing="2.6"
+    text-anchor="middle"
+  >
+    sovia
+  </text>
+</svg>
