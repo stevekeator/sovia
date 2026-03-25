@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.env.local
+.env.*.local
+.npm-cache/
+node_modules/
+apps/*/node_modules/
+apps/*/.expo/
+apps/*/.next/
+apps/*/dist/
+apps/*/build/
+apps/*/coverage/
+apps/*/prisma/dev.db
+apps/*/prisma/dev.db-journal
