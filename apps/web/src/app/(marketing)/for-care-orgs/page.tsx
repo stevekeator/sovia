@@ -30,7 +30,7 @@ export default function ForCareOrgsPage() {
             assignments, device access, and reporting.
           </p>
         </div>
-        <div className="panel bg-[rgba(252,251,248,0.96)] p-6">
+        <div className="marketing-section-note">
           <p className="eyebrow">Best fit</p>
           <p className="mt-3 text-base leading-8 text-muted">
             Family care teams, schools, therapy centers, supported-living operations,
@@ -52,7 +52,7 @@ export default function ForCareOrgsPage() {
       <section className="grid gap-6 lg:grid-cols-[1fr_0.9fr]">
         <div className="panel p-7">
           <p className="eyebrow">What organizations can use</p>
-          <ul className="mt-5 space-y-3 text-base leading-8 text-muted">
+          <ul className="mt-5 list-disc pl-6 text-base leading-8 text-muted marker:text-[var(--primary)]">
             <li>Supported-user profiles with assignments and linked devices.</li>
             <li>Routine libraries that can be reused and updated across people.</li>
             <li>Shared caregiver access and clearer reporting when outcomes need review.</li>

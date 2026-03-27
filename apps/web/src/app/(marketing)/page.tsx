@@ -1,5 +1,62 @@
 import Link from "next/link";
 
+function GuidanceIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+      <path d="M5 12h12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M13 7l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M5 7.5c1.2-1.8 3.4-3 5.9-3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function VoiceIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+      <path d="M12 4a3 3 0 0 1 3 3v4a3 3 0 1 1-6 0V7a3 3 0 0 1 3-3Z" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M7 10.5a5 5 0 0 0 10 0M12 15.5V20M9 20h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function OfflineIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+      <path d="M7 17h10M8.5 12.5L12 9l3.5 3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 9v8M4.5 6.5c2-1.8 4.6-2.7 7.5-2.7 2.8 0 5.4.9 7.5 2.7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function SetupIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" aria-hidden="true">
+      <path d="M12 4v4M12 16v4M4 12h4M16 12h4M6.8 6.8l2.8 2.8M14.4 14.4l2.8 2.8M17.2 6.8l-2.8 2.8M9.6 14.4l-2.8 2.8" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      <circle cx="12" cy="12" r="3.1" stroke="currentColor" strokeWidth="1.7" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" aria-hidden="true">
+      <rect x="7.2" y="2.8" width="9.6" height="18.4" rx="2.4" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M10 5.7h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <circle cx="12" cy="18" r="0.9" fill="currentColor" />
+    </svg>
+  );
+}
+
+function ReportingIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" aria-hidden="true">
+      <path d="M5 18.5h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M7.5 15V10.5M12 15V7.5M16.5 15V12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M6 6.5h12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity="0.5" />
+    </svg>
+  );
+}
+
 const pillars = [
   {
     title: "Simple enough for daily use",
@@ -25,112 +82,120 @@ const workflow = [
 export default function HomePage() {
   return (
     <div className="space-y-28 pb-28 pt-12">
-      <section className="page-shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-        <div className="space-y-8">
-          <p className="eyebrow">Routine support for every support system</p>
-          <div className="space-y-6">
-            <h1 className="display max-w-3xl text-5xl leading-[1.02] tracking-tight text-foreground md:text-[4.25rem]">
-              A calm routine platform for individuals, families, and care teams.
-            </h1>
-            <p className="max-w-2xl text-lg leading-8 text-muted">
-              sovia helps households and care organizations build image-first routines,
-              add voice guidance, run them offline, and expand into shared caregiver
-              workflows only when they need more support.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/pricing" className="button-primary">
-              View Plans
-            </Link>
-            <Link href="/for-care-orgs" className="button-secondary">
-              For Care Orgs
-            </Link>
-          </div>
-          <div className="flex flex-wrap gap-3 text-sm font-semibold text-muted">
-            <span className="border border-line bg-[rgba(252,251,248,0.82)] px-3 py-2">
-              Image-first routines
-            </span>
-            <span className="border border-line bg-[rgba(252,251,248,0.82)] px-3 py-2">
-              Voice guidance
-            </span>
-            <span className="border border-line bg-[rgba(252,251,248,0.82)] px-3 py-2">
-              Offline-ready
-            </span>
-          </div>
-          <div className="grid gap-4 pt-3 sm:grid-cols-3">
-            <div className="panel p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">Setup</p>
-              <p className="mt-3 text-3xl font-bold text-foreground">Minutes</p>
-              <p className="mt-2 text-sm leading-6 text-muted">Fast pairing and routine publishing.</p>
+      <section className="page-shell space-y-8">
+        <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div className="space-y-8">
+            <p className="eyebrow">Routine support for every support system</p>
+            <div className="space-y-6">
+              <h1 className="display max-w-3xl text-5xl leading-[1.02] tracking-tight text-foreground md:text-[4.25rem]">
+                A calm routine platform for individuals, families, and care teams.
+              </h1>
+              <p className="max-w-2xl text-lg leading-8 text-muted">
+                sovia helps households and care organizations build image-first routines,
+                add voice guidance, run them offline, and expand into shared caregiver
+                workflows only when they need more support.
+              </p>
             </div>
-            <div className="panel bg-[rgba(252,251,248,0.98)] p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">Mobile mode</p>
-              <p className="mt-3 text-3xl font-bold text-foreground">Offline-ready</p>
-              <p className="mt-2 text-sm leading-6 text-muted">Calm screens that keep working offline.</p>
+            <div className="flex flex-wrap gap-4">
+              <Link href="/pricing" className="button-primary">
+                View Plans
+              </Link>
+              <Link href="/for-care-orgs" className="button-secondary">
+                For Care Orgs
+              </Link>
             </div>
-            <div className="panel bg-[rgba(248,252,249,0.96)] p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">Reporting</p>
-              <p className="mt-3 text-3xl font-bold text-foreground">Step-level</p>
-              <p className="mt-2 text-sm leading-6 text-muted">Review outcomes without extra sprawl.</p>
+            <div className="flex flex-wrap gap-3">
+              <span className="marketing-chip">
+                <GuidanceIcon />
+                Image-first routines
+              </span>
+              <span className="marketing-chip">
+                <VoiceIcon />
+                Voice guidance
+              </span>
+              <span className="marketing-chip">
+                <OfflineIcon />
+                Offline-ready
+              </span>
             </div>
           </div>
-        </div>
 
-        <div className="panel relative overflow-hidden border-[#d7d4cb] bg-[linear-gradient(180deg,rgba(252,251,248,0.98)_0%,rgba(244,237,226,0.92)_100%)] p-6">
-          <div className="absolute inset-x-8 top-0 h-28 bg-accent-soft/60 blur-3xl" />
-          <div className="relative grid gap-4">
-            <div className="border border-[#ddd6c8] bg-[#f1e8db] p-5">
-              <p className="eyebrow">Admin Portal</p>
-              <p className="mt-3 text-2xl font-semibold">Create a morning routine</p>
-              <div className="mt-5 grid gap-3">
-                {["Brush teeth", "Wash face", "Get dressed"].map((label, index) => (
-                  <div
-                    key={label}
-                    className="flex items-center gap-4 border border-[#ddd6c8] bg-white/94 px-4 py-3"
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center border border-[#c8ddd6] bg-[#e2f1ec] text-sm font-bold text-accent">
-                      {index + 1}
-                    </div>
+          <div className="panel relative overflow-hidden border-[#d7d4cb] bg-[linear-gradient(180deg,rgba(252,251,248,0.98)_0%,rgba(244,237,226,0.92)_100%)] p-6 lg:p-7">
+            <div className="absolute inset-x-8 top-0 h-28 bg-accent-soft/60 blur-3xl" />
+            <div className="relative flex min-h-[34rem] items-center justify-center rounded-[10px] border border-dashed border-[#cfc5b5] bg-[linear-gradient(180deg,rgba(255,255,255,0.45)_0%,rgba(237,246,241,0.45)_100%)] p-8">
+              <div className="absolute inset-x-0 bottom-0 h-28 bg-[radial-gradient(circle_at_center,rgba(31,95,82,0.16),transparent_68%)]" />
+              <div className="relative flex h-[31rem] w-[16rem] items-center justify-center rounded-[2.4rem] border border-[#d5cec1] bg-[#1f2a28] p-3 shadow-[0_22px_52px_rgba(31,42,40,0.22)]">
+                <div className="absolute top-3 h-6 w-28 rounded-full bg-[#2d3b38]" />
+                <div className="flex h-full w-full flex-col rounded-[2rem] border border-[#d6d0c4] bg-[linear-gradient(180deg,#f7f3ea_0%,#edf6f1_100%)] p-4">
+                  <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-semibold">{label}</p>
-                      <p className="text-sm text-muted">Image-led step with optional text</p>
+                      <p className="eyebrow">Mobile App</p>
+                      <p className="mt-1 text-lg font-semibold text-foreground">Morning Routine</p>
+                    </div>
+                    <div className="rounded-[999px] border border-[#c8ddd6] bg-white/80 px-3 py-1 text-xs font-semibold text-accent">
+                      Step 1 of 3
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="border border-[#255b52] bg-[#1f5f52] p-5 text-white">
-              <p className="eyebrow !text-[#d6f2ea]">Mobile Experience</p>
-              <div className="mt-4 border border-white/10 bg-white/8 p-4">
-                <p className="text-lg font-semibold">Morning Reset</p>
-                <div className="mt-4 border border-white/8 bg-white/10 p-4">
-                  <div className="mb-4 aspect-[4/3] overflow-hidden border border-[#cce1db] bg-[#e6f0ec]">
-                    <img
-                      src="/demo-images/brush-teeth.jpg"
-                      alt="Brush teeth routine step"
-                      className="h-full w-full object-contain"
-                    />
+                  <div className="mt-4 flex-1 overflow-hidden rounded-[1.3rem] border border-[#d6d0c4] bg-white/90 p-4">
+                    <div className="aspect-[4/5] overflow-hidden rounded-[1rem] border border-[#d8e8e0] bg-[#eef5f1]">
+                      <img
+                        src="/demo-images/brush-teeth.jpg"
+                        alt="Routine screen placeholder"
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div className="mt-4 space-y-3">
+                      <p className="text-xl font-semibold text-foreground">Brush teeth</p>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="rounded-[10px] border border-[#cfe0d7] bg-[#edf6f1] px-4 py-3 text-center text-sm font-semibold text-accent">
+                          Done
+                        </div>
+                        <div className="rounded-[10px] border border-line bg-white px-4 py-3 text-center text-sm font-semibold text-muted">
+                          Not Done
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-xl font-semibold">Brush teeth</p>
-                  <div className="mt-4 grid grid-cols-2 gap-3">
-                    <div className="border border-white/30 bg-white px-4 py-3 text-center font-semibold text-accent">
-                      Done
-                    </div>
-                    <div className="border border-white/30 px-4 py-3 text-center font-semibold">
-                      Not Done
-                    </div>
+                  <div className="mt-4 rounded-[10px] border border-dashed border-[#d2d8ce] bg-white/60 px-4 py-3 text-center text-xs font-semibold tracking-[0.08em] text-muted">
+                    Final product imagery will replace this placeholder.
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div className="grid gap-4 pt-3 sm:grid-cols-3">
+          <div className="panel p-6">
+            <span className="marketing-icon-badge">
+              <SetupIcon />
+            </span>
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-muted">Setup</p>
+            <p className="mt-3 text-3xl font-bold text-foreground">Minutes</p>
+            <p className="mt-2 text-sm leading-6 text-muted">Fast pairing and routine publishing.</p>
+          </div>
+          <div className="panel bg-[rgba(252,251,248,0.98)] p-6">
+            <span className="marketing-icon-badge">
+              <PhoneIcon />
+            </span>
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-muted">Mobile mode</p>
+            <p className="mt-3 text-3xl font-bold text-foreground">Offline-ready</p>
+            <p className="mt-2 text-sm leading-6 text-muted">Calm screens that keep working offline.</p>
+          </div>
+          <div className="panel bg-[rgba(248,252,249,0.96)] p-6">
+            <span className="marketing-icon-badge">
+              <ReportingIcon />
+            </span>
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-muted">Reporting</p>
+            <p className="mt-3 text-3xl font-bold text-foreground">Step-level</p>
+            <p className="mt-2 text-sm leading-6 text-muted">Review outcomes without extra sprawl.</p>
+          </div>
+        </div>
       </section>
 
       <section className="page-shell grid gap-5 lg:grid-cols-2">
-        <article className="panel bg-[rgba(252,251,248,0.98)] p-7">
-          <p className="eyebrow">For Individuals</p>
+          <article className="panel bg-[rgba(252,251,248,0.98)] p-7">
+            <p className="eyebrow">For Individuals</p>
           <h2 className="mt-4 text-[1.9rem] font-semibold text-foreground">
             Start with one person and a simple daily routine.
           </h2>
@@ -147,7 +212,7 @@ export default function HomePage() {
             </Link>
           </div>
         </article>
-        <article className="panel bg-[rgba(246,250,248,0.96)] p-7">
+          <article className="panel bg-[rgba(246,250,248,0.96)] p-7">
           <p className="eyebrow">For Care Orgs</p>
           <h2 className="mt-4 text-[1.9rem] font-semibold text-foreground">
             Add shared access, reporting, and rollout support when the work grows.
@@ -195,7 +260,7 @@ export default function HomePage() {
         <div className="panel bg-[rgba(252,251,248,0.96)] p-7">
           <ol className="grid gap-4">
             {workflow.map((step, index) => (
-              <li key={step} className="flex gap-4 border border-line bg-white/72 p-4">
+              <li key={step} className="marketing-list-card flex gap-4">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-[#d2c09a] bg-[#f5ead3] text-sm font-bold text-[#8b6d34]">
                   {index + 1}
                 </div>

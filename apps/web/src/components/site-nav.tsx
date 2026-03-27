@@ -9,7 +9,6 @@ const navItems = [
   { href: "/for-individuals", label: "For Individuals" },
   { href: "/for-care-orgs", label: "For Care Orgs" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/about", label: "About" },
   { href: "/contact", label: "Request Demo" },
 ];
 

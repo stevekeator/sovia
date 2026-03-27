@@ -6,23 +6,23 @@ export function SiteFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="mt-16 border-t border-[#6f5843] bg-[#4b3a2b] text-[#f7f3ea]">
-      <div className="page-shell py-14">
-        <div className="grid gap-6 md:grid-cols-[1.4fr_0.8fr_0.8fr]">
-          <div className="rounded-[10px] border border-[#6f5843] bg-[rgba(255,248,240,0.06)] p-6">
+    <footer className="mt-14 border-t border-[#6f5843] bg-[#4f3d2d] text-[#f7f3ea]">
+      <div className="page-shell py-10">
+        <div className="grid gap-4 md:grid-cols-[1.55fr_0.75fr_0.75fr]">
+          <div className="rounded-[10px] border border-[#6f5843] bg-[rgba(255,248,240,0.05)] p-5">
             <ProductWordmark
               theme="dark"
               descriptor="Care-ready routines and reporting"
             />
-            <p className="mt-4 max-w-md text-sm leading-7 text-[#e4d8ca]">
+            <p className="mt-3 max-w-md text-sm leading-7 text-[#e4d8ca]">
               sovia helps individuals, families, and care organizations deliver calm,
               image-first routines that work on real devices and keep working offline.
             </p>
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-[#ccb9a4]">
+            <p className="mt-3 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[#ccb9a4]">
               Built for care settings
             </p>
           </div>
-          <div className="rounded-[10px] border border-[#6f5843] bg-[rgba(255,248,240,0.06)] p-6 text-sm text-[#e4d8ca]">
+          <div className="rounded-[10px] border border-[#6f5843] bg-[rgba(255,248,240,0.05)] p-5 text-sm text-[#e4d8ca]">
             <p className="text-sm font-semibold tracking-[0.01em] text-[#f7f3ea]">Explore</p>
             <div className="mt-4 flex flex-col items-start gap-2.5">
               <Link className="inline-block transition hover:text-white" href="/for-individuals">
@@ -34,15 +34,12 @@ export function SiteFooter() {
               <Link className="inline-block transition hover:text-white" href="/pricing">
                 Pricing
               </Link>
-              <Link className="inline-block transition hover:text-white" href="/about">
-                About
-              </Link>
               <Link className="inline-block transition hover:text-white" href="/contact">
                 Contact
               </Link>
             </div>
           </div>
-          <div className="rounded-[10px] border border-[#6f5843] bg-[rgba(255,248,240,0.06)] p-6 text-sm text-[#e4d8ca]">
+          <div className="rounded-[10px] border border-[#6f5843] bg-[rgba(255,248,240,0.05)] p-5 text-sm text-[#e4d8ca]">
             <p className="text-sm font-semibold tracking-[0.01em] text-[#f7f3ea]">
               Access and Policy
             </p>
@@ -59,7 +56,7 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-        <p className="mt-6 text-xs font-medium tracking-[0.02em] text-[#ccb9a4]">
+        <p className="mt-4 text-[0.72rem] font-medium tracking-[0.02em] text-[#ccb9a4]">
           Copyright © {currentYear} sovia. All rights reserved.
         </p>
       </div>

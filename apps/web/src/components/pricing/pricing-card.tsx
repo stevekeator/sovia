@@ -29,7 +29,7 @@ export function PricingCard({
   return (
     <article
       className={cn(
-        "panel flex h-full flex-col p-[0.875rem]",
+        "panel flex h-full flex-col px-[0.625rem] py-5",
         plan.recommended &&
           "border-[#bad7cf] bg-[linear-gradient(180deg,rgba(252,251,248,1)_0%,rgba(239,247,243,0.98)_100%)] shadow-[0_14px_26px_rgba(31,95,82,0.08)]",
       )}

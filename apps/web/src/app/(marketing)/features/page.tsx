@@ -28,6 +28,15 @@ const featureGroups = [
   },
 ];
 
+function FeatureDot() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" className="mt-[0.2rem] h-5 w-5 shrink-0" aria-hidden="true">
+      <circle cx="10" cy="10" r="8" fill="#E8F3EE" stroke="#CFE0D7" />
+      <path d="M7 10.2 9 12l4-4.4" stroke="#1F5F52" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export default function FeaturesPage() {
   return (
     <div className="page-shell space-y-12 py-18">
@@ -41,7 +50,7 @@ export default function FeaturesPage() {
             only when your setup needs that visibility.
           </p>
         </div>
-        <div className="panel bg-[rgba(252,251,248,0.96)] p-6">
+        <div className="marketing-section-note">
           <p className="eyebrow">What matters most</p>
           <p className="mt-3 text-base leading-8 text-muted">
             Every part of the product is designed to reduce setup friction for households
@@ -57,8 +66,8 @@ export default function FeaturesPage() {
             <h2 className="mt-3 text-2xl font-semibold text-foreground">{group.title}</h2>
             <ul className="mt-5 space-y-3 text-sm leading-7 text-muted">
               {group.items.map((item) => (
-                <li key={item} className="flex gap-3 border border-line bg-white/72 px-4 py-3">
-                  <span className="mt-[0.35rem] inline-flex h-2.5 w-2.5 shrink-0 bg-accent-soft" />
+                <li key={item} className="marketing-list-card flex gap-3">
+                  <FeatureDot />
                   <span>{item}</span>
                 </li>
               ))}
@@ -73,7 +82,7 @@ export default function FeaturesPage() {
           "Keep routine delivery simple on the device.",
           "Keep reporting close to the work being reviewed.",
         ].map((note) => (
-          <div key={note} className="panel bg-[rgba(252,251,248,0.94)] p-5 text-sm leading-7 text-muted">
+          <div key={note} className="marketing-section-note text-sm leading-7 text-muted">
             <p className="eyebrow">Design principle</p>
             <p className="mt-3">{note}</p>
           </div>

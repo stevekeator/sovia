@@ -2,14 +2,17 @@ import Link from "next/link";
 
 const sections = [
   {
+    label: "Simple Setup",
     title: "Start simply",
     body: "Set up routines for one person without introducing a heavy care-management workflow.",
   },
   {
+    label: "Voice Support",
     title: "Use voice guidance when it helps",
     body: "Record familiar prompts or use spoken fallback support when a routine needs more than pictures alone.",
   },
   {
+    label: "Room to Grow",
     title: "Grow only when you need to",
     body: "Start with a free or individual plan, then move into shared caregiver access later if support needs expand.",
   },
@@ -30,7 +33,7 @@ export default function ForIndividualsPage() {
             larger organizational workflow.
           </p>
         </div>
-        <div className="panel bg-[rgba(252,251,248,0.96)] p-6">
+        <div className="marketing-section-note">
           <p className="eyebrow">Best fit</p>
           <p className="mt-3 text-base leading-8 text-muted">
             Individuals, households, and solo caregivers who want a simple path from
@@ -42,7 +45,7 @@ export default function ForIndividualsPage() {
       <section className="grid gap-5 md:grid-cols-3">
         {sections.map((section) => (
           <article key={section.title} className="panel p-7">
-            <p className="eyebrow">Why it works</p>
+            <p className="eyebrow">{section.label}</p>
             <h2 className="mt-4 text-[1.72rem] font-semibold text-foreground">{section.title}</h2>
             <p className="mt-4 text-base leading-7 text-muted">{section.body}</p>
           </article>
@@ -52,7 +55,7 @@ export default function ForIndividualsPage() {
       <section className="grid gap-6 lg:grid-cols-[1fr_0.9fr]">
         <div className="panel p-7">
           <p className="eyebrow">What you get</p>
-          <ul className="mt-5 space-y-3 text-base leading-8 text-muted">
+          <ul className="mt-5 list-disc pl-6 text-base leading-8 text-muted marker:text-[var(--primary)]">
             <li>Image-first routines that stay easy to follow.</li>
             <li>Free plans support up to 2 routines with up to 6 steps per routine.</li>
             <li>Optional voice guidance with a free-plan taste and unlimited access on paid plans.</li>
